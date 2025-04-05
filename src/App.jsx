@@ -1,7 +1,7 @@
-import { AllFilmPage } from "./modules/films/pages/AllFilmPage";
+import { AppRouter } from "./router/AppRouter";
 
 export const App = () => {
   return (
-    <AllFilmPage />
+    <AppRouter />
   )
 };
