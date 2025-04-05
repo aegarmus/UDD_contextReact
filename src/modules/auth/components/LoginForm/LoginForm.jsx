@@ -1,11 +1,13 @@
-import { useState } from "react"
-import { loginService } from "../../services/authApiService";
+import { useContext, useState } from "react"
+import { AuthContext } from "../../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 
 export const LoginForm = () => {
-
+    const { login } = useContext(AuthContext);
     const [ correo, setcorreo ] = useState('');
     const [ password, setPassword ] = useState('');
+    const navigate = useNavigate();
 
     const handleLogin = async(event) => {
         event.preventDefault();
@@ -16,10 +18,9 @@ export const LoginForm = () => {
         }
 
         try {
-            const dataLogin = await loginService(formatData);
-            console.log(dataLogin);
-
-
+            await login(formatData);
+            navigate('/');
+            
         } catch (error) {
             console.error(error);
             alert("Error al iniciar sesión");

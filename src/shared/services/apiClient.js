@@ -7,3 +7,4 @@ export const apiClient = axios.create({
     baseURL: backendUrl,
     timeout: 10000,
 });
+
