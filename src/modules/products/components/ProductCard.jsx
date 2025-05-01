@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { formatCurrency } from "../../../shared/utils/formatCurrency"
 import { envLoader } from "../../../config/envLoader";
+import { CartAddButton } from "../../cart/components/CartAddButton";
 
 const { optionsCurrency } = envLoader
 
@@ -43,7 +44,7 @@ export const ProductCard = ({ producto }) => {
                 ? `${producto.stock} disponible(s)`
                 : "Agotado"}
             </span>
-            <button>Agregar al carrito</button>
+            <CartAddButton product={producto} />
           </div>
         </div>
       </div>

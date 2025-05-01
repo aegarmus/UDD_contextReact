@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 import { authReducer } from "./authReducer"
-import { loginService } from "../services/authApiService";
+import { loginService, registerService } from "../services/authApiService";
 import { AuthContext } from "./AuthContext";
 
 
@@ -40,6 +40,26 @@ export const AuthProvider = ({ children }) => {
         }
     }
 
+    const register = async(userData) => {
+        try {
+            const registerData = await  registerService(userData);
+
+            const user = registerData.data;
+
+            if (!user) {
+                throw new Error("No se pudo registrar el usuario");
+            }
+
+            dispatch({
+                type: 'REGISTER',
+                payload: { user }
+            })
+        } catch (error) {
+            console.error("Error registering:", error);
+            throw new Error(error);
+        }
+    }
+
     const logout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
@@ -62,6 +82,7 @@ export const AuthProvider = ({ children }) => {
                 user: state.user,
                 token: state.token,
                 login,
+                register,
                 logout
             }}
         >
