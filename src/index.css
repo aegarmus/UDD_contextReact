@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+
+
+.bg-success {
+    background-color: greenyellow;
+    color: darkgreen;
+    border: 1px solid darkgreen;
+}

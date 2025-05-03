@@ -1,5 +1,6 @@
 import { envLoader } from "../../../config/envLoader";
 import { formatCurrency } from "../../../shared/utils/formatCurrency";
+import { MercadoPagoButton } from "../../payments/components/MercadoPagoButton";
 import useCartContext from "../context/CartContext"
 import { CartProduct } from "./CartItem";
 
@@ -67,12 +68,11 @@ export const CartSideBar = ({ onClose }) => {
                                 </div>
 
                                 <div className="mt-6">
-                                    <button
-                                        onClick={handleCheckout}
-                                        className="w-full flex items-center justify-center px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-                                    >
-                                        Pagar
-                                    </button>
+                                    <MercadoPagoButton
+                                        cart={products}
+                                        total={totalPrice}
+                                        onPaymentSuccess={handleCheckout}
+                                    />
                                 </div>
                                 <div className="mt-3 flex items-center justify-center text-sm text-gray-500">
                                     <button
